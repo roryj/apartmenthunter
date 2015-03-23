@@ -1,0 +1,14 @@
+{
+	"email": "email@email.com",
+	"password": "password here",
+	"phoneNumber": "1234567890",
+
+	"criteria": {
+		"minPrice": 0,
+		"maxPrice": 0,
+		"minSqft": 0,
+		"maxSqft": 0,
+		"neightborhoods": ["Capital Hill", "Fremont", "Belltown"],
+		"pages": 3
+	}
+}
