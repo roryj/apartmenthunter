@@ -8,11 +8,13 @@ from src.configuration import Configuration
 def main():
 
 	config = Configuration()
+	craigsLister = Craigslist(config.minPrice, config.maxPrice, config.bedrooms, config.minSqft, config.maxSqft)
 
-	craigsLister = Craigslist(config.minPrice, config.maxPrice, config.minSqft, config.maxSqft)
+	apartments = []
 
-	# Get the list of apartments from craigslist
-	apartments = craigsLister.getApartments("Capital Hill", config.pages)
+	for neighbourhood in config.neighbourhoods:
+		# Get the list of apartments from craigslist
+		apartments.extend(craigsLister.getApartments(neighbourhood, config.pages))
 
 	for apartment in apartments:
 		print (apartment.ranking)
@@ -29,7 +31,7 @@ def main():
 	messenger.sendTextMessageTMobile(config.phoneNumber, str(apartments[0]))
 
 	# Send the top 10 in email
-	messenger.sendEmailMessage('\r\n\r\n'.join(str(str(apt).encode('utf-8')) for apt in apartments[:10]))
+	messenger.sendEmailMessage(('<br/><br/>'.join(apt.formatForEmail() for apt in apartments[:20])))
 
 if __name__ == "__main__":
     main()

@@ -2,6 +2,7 @@
 
 import smtplib
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 class Messenger(object):
 
@@ -11,11 +12,13 @@ class Messenger(object):
 
 	def sendEmailMessage(self, message):
 
-		msg = MIMEText(message)
-		
+		msg = MIMEMultipart('alternative')
 		msg['Subject'] = 'Apartment Results'
 		msg['From'] = self.email
 		msg['To'] = self.email
+
+		htmlMessage = MIMEText(message, 'html')
+		msg.attach(htmlMessage)
 
 		self.__sendMessage(self.email, msg)
 

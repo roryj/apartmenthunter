@@ -28,6 +28,14 @@ class Apartment(object):
 	def __str__(self):
 		return self.title + "\r\nPrice: $" + self.price + "\r\nSize: " + self.size + "sqft\r\nBedrooms: " + self.bedrooms + "\r\nDescription: " + self.description + "\r\n" + self.link + "\r\nCreated: " + self.created
 
+	def formatForEmail(self):
+		return "<html><a href='" + self.link + "'><h1>" + self.title + """</h1></a><br/> 
+				<b>Price:</b> $""" + str(self.price) + """<br/>
+				<b>Size:</b> """ + str(self.size) + """sqft<br/>
+				<b>Bedrooms:</b> """ + self.bedrooms + """br/>
+				<b>Description:</b> """ + self.description + """<br/>
+				<b>Created:</b> """ + self.created + "</html>"
+
 	def __getRanking(self):
 
 		ranking = ((int(self.size) / 600) * 3) + ((1800 / int(self.price)) * 6)
@@ -53,5 +61,14 @@ class Apartment(object):
 
 		if "view" in self.description:
 			ranking += 5
+
+		if "breakfast nook" in self.description:
+			ranking += 8
+
+		if "nook" in self.description:
+			ranking += 8
+			
+		if "island" in self.description:
+			ranking += 8	
 
 		return ranking

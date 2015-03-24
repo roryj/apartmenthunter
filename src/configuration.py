@@ -16,10 +16,11 @@ class Configuration(object):
 		self.phoneNumber = data["phoneNumber"]
 
 		# Search criteria
-		self.neighborhoods = data["criteria"]["neightborhoods"]
+		self.neighbourhoods = data["criteria"]["neighbourhoods"]
 		self.minPrice = data["criteria"]["minPrice"]
 		self.maxPrice = data["criteria"]["maxPrice"]
 		self.minSqft = data["criteria"]["minSqft"]
 		self.maxSqft = data["criteria"]["maxSqft"]
+		self.bedrooms = data["criteria"]["bedrooms"]
 		self.pages = data["criteria"]["pages"]
 
