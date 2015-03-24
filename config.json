@@ -6,7 +6,7 @@
 	"criteria": {
 		"minPrice": 0,
 		"maxPrice": 0,
-		"minSqft": 0,
+		"minSqft": 500,
 		"maxSqft": 0,
 		"bedrooms": 1,
 		"neighbourhoods": ["Capital Hill", "Fremont", "Belltown"],

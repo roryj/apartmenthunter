@@ -14,12 +14,10 @@ class Apartment(object):
 		self.link = link
 		self.created = created
 
-		print (title)
 		temp = title.split()
 		self.size = temp.pop().split('<')[0].replace('ft', '')
 		self.bedrooms = temp.pop()
 		self.price = temp.pop().replace('&#x0024;', '')
-		print (self.price)
 
 		self.title = ' '.join(temp)
 
@@ -29,16 +27,17 @@ class Apartment(object):
 		return self.title + "\r\nPrice: $" + self.price + "\r\nSize: " + self.size + "sqft\r\nBedrooms: " + self.bedrooms + "\r\nDescription: " + self.description + "\r\n" + self.link + "\r\nCreated: " + self.created
 
 	def formatForEmail(self):
-		return "<html><a href='" + self.link + "'><h1>" + self.title + """</h1></a><br/> 
+		return "<html><a href='" + self.link + "'><h1>" + self.title + """</h1></a>
+				<b>Rating:</b> """ + str(self.ranking) + """<br/> 
 				<b>Price:</b> $""" + str(self.price) + """<br/>
 				<b>Size:</b> """ + str(self.size) + """sqft<br/>
-				<b>Bedrooms:</b> """ + self.bedrooms + """br/>
+				<b>Bedrooms:</b> """ + self.bedrooms + """<br/>
 				<b>Description:</b> """ + self.description + """<br/>
 				<b>Created:</b> """ + self.created + "</html>"
 
 	def __getRanking(self):
 
-		ranking = ((int(self.size) / 600) * 3) + ((1800 / int(self.price)) * 6)
+		ranking = ((int(self.size) / 600) * 4) + (pow((1800 / int(self.price)), 2) * 6)
 
 # 		print("""
 # Printing Rating for """ + self.link)
@@ -59,11 +58,14 @@ class Apartment(object):
 		if "balcony" in self.description:
 			ranking += 4
 
-		if "view" in self.description:
+		if "sound" in self.description:
 			ranking += 5
 
-		if "breakfast nook" in self.description:
-			ranking += 8
+		if "water" in self.description:
+			ranking += 5
+
+		if "elliot" in self.description:
+			ranking += 5
 
 		if "nook" in self.description:
 			ranking += 8
