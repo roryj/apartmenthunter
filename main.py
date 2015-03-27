@@ -7,6 +7,10 @@ from src.configuration import Configuration
 
 def main():
 
+	print ("""*********************************************
+Starting the Apartment Hunter
+*********************************************""")
+
 	config = Configuration()
 	craigsLister = Craigslist(config.minPrice, config.maxPrice, config.bedrooms, config.minSqft, config.maxSqft)
 
@@ -23,6 +27,9 @@ def main():
 	temp = set(apartments)
 
 	uniqueApartments = list(temp)
+
+	print (len(apartments), " apartments found in total.")
+	print (len(uniqueApartments), " unique apartments found in total.")
 
 	messenger = Messenger(config.email, config.password)
 

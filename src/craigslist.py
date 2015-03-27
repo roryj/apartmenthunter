@@ -6,13 +6,17 @@ import library.feedparser as parser
 
 class Craigslist(Website):
 
-	def getApartments(self, neighborhood, pages):
+	def getApartments(self, neighbourhood, pages):
 
 		apartments = []
 
+		print ("Searching ", pages, " pages of craigslist for apartments in ", neighbourhood, ".")
+
 		for page in range(0, pages):
 
-			queryString = self.__generateQueryString(neighborhood, page)
+			queryString = self.__generateQueryString(neighbourhood, page)
+
+			print(queryString)
 
 			results = parser.parse(queryString)
 
@@ -23,6 +27,8 @@ class Craigslist(Website):
 				try:
 					apartment = Apartment(apartmentListing["title"], apartmentListing["link"], apartmentListing["summary"], apartmentListing["published"])
 
+					print ("Adding apartment ", apartment.title, " to list.")
+
 					apartments.append(apartment)
 
 				except ValueError as detail:
@@ -30,7 +36,7 @@ class Craigslist(Website):
 
 		return apartments
 
-	def __generateQueryString(self, neighborhood, page):
+	def __generateQueryString(self, neighbourhood, page):
 		#http://seattle.craigslist.org/search/see/apa?minAsk=1400&maxAsk=2000&bedrooms=1&minSqft=500&query=capital+hill&format=rss
 		
 		query = "http://seattle.craigslist.org/search/see/apa?"
@@ -45,8 +51,8 @@ class Craigslist(Website):
 			if (propertyValue):
 				query += objectProperty + "=" + str(propertyValue) + "&"
 
-		if (neighborhood):
-			query += "query=" + neighborhood.replace(" ", "+") + "&"
+		if (neighbourhood):
+			query += "query=" + neighbourhood.replace(" ", "+") + "&"
 
 		query += "format=rss&s=" + str(page * 25)
 

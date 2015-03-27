@@ -8,6 +8,8 @@ class Configuration(object):
 		if not configPath:
 			configPath = "config.json"
 
+		print ("Setting up the configuration from ", configPath, ".")
+
 		with open(configPath) as data_file:
 			data = json.load(data_file)
 

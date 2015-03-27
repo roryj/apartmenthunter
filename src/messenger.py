@@ -12,6 +12,9 @@ class Messenger(object):
 
 	def sendEmailMessage(self, message):
 
+		print ("Sending message to ", self.email)
+		print(message)
+
 		msg = MIMEMultipart('alternative')
 		msg['Subject'] = 'Apartment Results'
 		msg['From'] = self.email
@@ -23,6 +26,9 @@ class Messenger(object):
 		self.__sendMessage(self.email, msg)
 
 	def sendTextMessageTMobile(self, number, message):
+
+		print ("Sending text to ", number)
+		print(message)
 
 		msg = MIMEText(message)
 

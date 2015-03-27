@@ -45,9 +45,6 @@ class Apartment(object):
 
 		ranking = ((int(self.size) / 600) * 4) + (pow((1800 / int(self.price)), 2) * 6)
 
-# 		print("""
-# Printing Rating for """ + self.link)
-
 # 		print("Now: ", datetime.now(tzlocal()).timestamp())
 # 		print("Posted On: ", parse.parse(self.created).timestamp())
 
@@ -64,6 +61,9 @@ class Apartment(object):
 		if "balcony" in self.description:
 			ranking += 4
 
+		if "view" in self.description:
+			ranking += 4
+
 		if "sound" in self.description:
 			ranking += 5
 
@@ -77,6 +77,8 @@ class Apartment(object):
 			ranking += 8
 			
 		if "island" in self.description:
-			ranking += 8	
+			ranking += 8
+
+		print("Ranking created for ", self.link, ": ", ranking)	
 
 		return ranking
