@@ -26,6 +26,12 @@ class Apartment(object):
 	def __str__(self):
 		return self.title + "\r\nPrice: $" + self.price + "\r\nSize: " + self.size + "sqft\r\nBedrooms: " + self.bedrooms + "\r\nDescription: " + self.description + "\r\n" + self.link + "\r\nCreated: " + self.created
 
+	def __eq__(self, other):
+		return self.title == other.title and self.created == other.created
+
+	def __hash__(self):
+		return hash(('title', self.title, 'created', self.created))
+
 	def formatForEmail(self):
 		return "<html><a href='" + self.link + "'><h1>" + self.title + """</h1></a>
 				<b>Rating:</b> """ + str(self.ranking) + """<br/> 

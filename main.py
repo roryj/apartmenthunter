@@ -19,13 +19,18 @@ def main():
 	# Sort the apartments based on ranking
 	apartments.sort(key=lambda x: x.ranking, reverse=True)
 
+	# Make the list unique
+	temp = set(apartments)
+
+	uniqueApartments = list(temp)
+
 	messenger = Messenger(config.email, config.password)
 
 	# Send the #1 ranked apartment as a text
-	messenger.sendTextMessageTMobile(config.phoneNumber, str(apartments[0]))
+	messenger.sendTextMessageTMobile(config.phoneNumber, str(uniqueApartments[0]))
 
 	# Send the top 20 in email
-	messenger.sendEmailMessage(('<br/><br/>'.join(apt.formatForEmail() for apt in apartments[:20])))
+	messenger.sendEmailMessage(('<br/><br/>'.join(apt.formatForEmail() for apt in uniqueApartments[:20])))
 
 if __name__ == "__main__":
     main()
