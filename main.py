@@ -20,13 +20,13 @@ Starting the Apartment Hunter
 	for neighbourhood in config.neighbourhoods:
 		apartments.extend(craigsLister.getApartments(neighbourhood, config.pages))
 
-	# Sort the apartments based on ranking
-	apartments.sort(key=lambda x: x.ranking, reverse=True)
-
 	# Make the list unique
 	temp = set(apartments)
 
 	uniqueApartments = list(temp)
+
+	# Sort the apartments based on ranking
+	uniqueApartments.sort(key=lambda x: x.ranking, reverse=True)
 
 	print (len(apartments), " apartments found in total.")
 	print (len(uniqueApartments), " unique apartments found in total.")
