@@ -36,8 +36,8 @@ Starting the Apartment Hunter
 	# Send the #1 ranked apartment as a text
 	messenger.sendTextMessageTMobile(config.phoneNumber, str(uniqueApartments[0]))
 
-	# Send the top 20 in email
-	messenger.sendEmailMessage(('<br/><br/>'.join(apt.formatForEmail() for apt in uniqueApartments[:20])))
+	# Send the top 10 in email
+	messenger.sendEmailMessage(('<br/><br/>'.join(apt.formatForEmail() for apt in uniqueApartments[:10])))
 
 if __name__ == "__main__":
     main()

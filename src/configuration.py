@@ -6,7 +6,7 @@ class Configuration(object):
 	def __init__(self, configPath = ''):
 
 		if not configPath:
-			configPath = "config.json"
+			configPath = "/home/pi/git/apartmenthunter/config.json"
 
 		print ("Setting up the configuration from ", configPath, ".")
 
